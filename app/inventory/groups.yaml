@@ -1,0 +1,14 @@
+---
+# groups.yaml file
+# Each group is used to attribute back to a platform
+ios:
+    platform: ios
+
+junos:
+    platform: junos
+
+eos:
+    platform: eos
+
+nxos:
+    platform: nxos

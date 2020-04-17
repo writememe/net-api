@@ -1,0 +1,30 @@
+---
+dfjt-r001.lab.dfjt.local:
+    hostname: 10.0.0.1
+    groups:
+        - ios
+
+lab-csr-01.lab.dfjt.local:
+    hostname: 10.0.0.16
+    groups:
+        - ios
+
+lab-arista-01.lab.dfjt.local:
+    hostname: 10.0.0.11
+    groups:
+        - eos
+
+lab-arista-02.lab.dfjt.local:
+    hostname: 10.0.0.18
+    groups:
+        - eos
+
+lab-junos-01.lab.dfjt.local:
+    hostname: 10.0.0.15
+    groups:
+        - junos
+
+lab-nxos-01.lab.dfjt.local:
+    hostname: 10.0.0.14
+    groups:
+        - nxos

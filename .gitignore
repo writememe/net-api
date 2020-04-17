@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore nornir logs
+nornir.log
+app/nornir.log

@@ -1,0 +1,564 @@
+---
+
+swagger: "2.0"
+info:
+  description: Swagger configuration file for NetAPI
+  version: "1.0.0"
+  title: NetAPI Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Below are the paths supported by the webapp application
+paths:
+  /nornir/inventory/all:
+    get:
+      operationId: net.get_inv_all
+      tags:
+        - Nornir
+      summary: Get a list of all inventory information
+      description: List all Nornir inventory information
+      responses:
+        200:
+          description: Successfully listed Nornir inventory
+          schema:
+            type: array
+            items:
+              properties:
+                defaults:
+                  type: object
+                  properties:
+                    connection_options:
+                      type: object
+                    data:
+                      type: object
+                    hostname:
+                      type: string
+                    password:
+                      type: string
+                    platform:
+                      type: string
+                    port:
+                      type: integer
+                    username:
+                      type: string
+                groups:
+                  type: object
+                  properties:
+                    connection_options:
+                      type: object
+                    data:
+                      type: object
+                    groups:
+                      type: array
+                      items:
+                        type: string
+                    hostname:
+                      type: string
+                    password:
+                      type: string
+                    platform:
+                      type: string
+                    port:
+                      type: integer
+                    username:
+                      type: string
+                hosts:
+                  type: object
+                  properties:
+                    connection_options:
+                      type: object
+                    data:
+                      type: object
+                    groups:
+                      type: array
+                      items:
+                        type: string
+                    hostname:
+                      type: string
+                    password:
+                      type: string
+                    platform:
+                      type: string
+                    port:
+                      type: integer
+                    username:
+                      type: string
+
+  /nornir/inventory/hosts:
+    get:
+      operationId: net.get_inv_hosts
+      tags:
+        - Nornir
+      summary: Get a list of all Nornir hosts in the inventory
+      description: List all Nornir hosts
+      responses:
+        200:
+          description: Successfully listed Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                hosts:
+                  type: object
+                  properties:
+                    connection_options:
+                      type: object
+                    data:
+                      type: object
+                    groups:
+                      type: array
+                      items:
+                        type: string
+                    hostname:
+                      type: string
+                    password:
+                      type: string
+                    platform:
+                      type: string
+                    port:
+                      type: integer
+                    username:
+                      type: string
+
+  /nornir/inventory/groups:
+    get:
+      operationId: net.get_inv_groups
+      tags:
+        - Nornir
+      summary: Get a list of all Nornir groups in the inventory
+      description: List all Nornir groups
+      responses:
+        200:
+          description: Successfully listed Nornir groups
+          schema:
+            type: array
+            items:
+              properties:
+                groups:
+                  type: object
+                  properties:
+                    connection_options:
+                      type: object
+                    data:
+                      type: object
+                    groups:
+                      type: array
+                      items:
+                        type: string
+                    hostname:
+                      type: string
+                    password:
+                      type: string
+                    platform:
+                      type: string
+                    port:
+                      type: integer
+                    username:
+                      type: string
+
+  /nornir/users:
+    get:
+      operationId: net.get_users
+      tags:
+        - Nornir
+      summary: Get all users from all Nornir hosts
+      description: Use the `get_users` function to retrieve all local usernames on all Nornir hosts
+      responses:
+        200:
+          description: Successfully listed all local usernames on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                hostname:
+                  type: object
+                  properties:
+                    users:
+                      type: object
+                      properties:
+                        username:
+                          type: object
+                          properties:
+                            level:
+                              type: integer
+                            password:
+                              type: string
+                            role:
+                              type: string
+                            sshkeys:
+                              type: array
+
+  /nornir/facts:
+    get:
+      operationId: net.get_facts
+      tags:
+        - Nornir
+      summary: Get all facts from all Nornir hosts
+      description: Use the `get_facts` function to retrieve all facts on all Nornir hosts
+      responses:
+        200:
+          description: Successfully listed all facts on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                hosts:
+                  type: object
+                  properties:
+                    facts:
+                      type: object
+                      properties:
+                        fqdn:
+                          type: string
+                        hostname:
+                          type: string
+                        interface_list:
+                          type: array
+                        model:
+                          type: string
+                        os_version:
+                          type: string
+                        serial_number:
+                          type: string
+                        uptime:
+                          type: integer
+                        vendor:
+                          type: string
+
+  /nornir/interfaces:
+    get:
+      operationId: net.get_interfaces
+      tags:
+        - Nornir
+      summary: Get all interfaces from all Nornir hosts
+      description: Use the `get_interfaces` function to retrieve all interfaces on all Nornir hosts
+      responses:
+        200:
+          description: Successfully listed all interfaces on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                hosts:
+                  type: object
+                  properties:
+                    interfaces:
+                      type: object
+                      properties:
+                        interface_name:
+                          type: object
+                          properties:
+                            description:
+                              type: string
+                            is_enabled:
+                              type: boolean
+                            is_up:
+                              type: boolean
+                            last_flapped:
+                              type: integer
+                            mac_address:
+                              type: string
+                            mtu:
+                              type: integer
+                            speed:
+                              type: integer
+
+  /nornir/interfaces_ip:
+    get:
+      operationId: net.get_interfaces_ip
+      tags:
+        - Nornir
+      summary: Get all interfaces from all Nornir hosts
+      description: Use the `get_interfaces` function to retrieve all interfaces on all Nornir hosts
+      responses:
+        200:
+          description: Successfully listed all interfaces on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                hosts:
+                  type: object
+                  properties:
+                    interfaces_ip:
+                      type: object
+                      properties:
+                        interface_name:
+                          type: object
+                          properties:
+                            ipv4:
+                              type: object
+                              properties:
+                                address:
+                                  type: object
+                                  properties:
+                                    prefix_length:
+                                      type: integer
+                            ipv6:
+                              type: object
+                              properties:
+                                address:
+                                  type: object
+                                  properties:
+                                    prefix_length:
+                                      type: integer
+
+  /nornir/ntp:
+    get:
+      operationId: net.get_ntp_servers
+      tags:
+        - Nornir
+      summary: Get all NTP servers from all Nornir hosts
+      description: Use the `get_ntp_servers` function to retrieve all NTP servers on all Nornir hosts
+      responses:
+        200:
+          description: Successfully listed all NTP servers on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                hosts:
+                  type: object
+                  properties:
+                    ntp_servers:
+                      type: object
+                      properties:
+                        ntp_server:
+                          type: object
+
+  /nornir/users/host:
+    get:
+      operationId: net.get_users_host
+      tags:
+        - Nornir
+      summary: Get users from an individual Nornir host
+      description: Get the users of a Nornir host
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+      responses:
+        200:
+          description: Successfully listed all local usernames on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    users:
+                      type: object
+                      properties:
+                        username:
+                          type: object
+                          properties:
+                            level:
+                              type: integer
+                            password:
+                              type: string
+                            role:
+                              type: string
+                            sshkeys:
+                              type: array
+
+  /nornir/facts/host:
+    get:
+      operationId: net.get_facts_host
+      tags:
+        - Nornir
+      summary: Get facts from an individual Nornir host
+      description: Get the facts of a Nornir host
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+      responses:
+        200:
+          description: Successfully read Nornir hosts fact
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    facts:
+                      type: object
+                      properties:
+                        fqdn:
+                          type: string
+                        hostname:
+                          type: string
+                        interface_list:
+                          type: array
+                        model:
+                          type: string
+                        os_version:
+                          type: string
+                        serial_number:
+                          type: string
+                        uptime:
+                          type: integer
+                        vendor:
+                          type: string
+
+  /nornir/interfaces/host:
+    get:
+      operationId: net.get_interfaces_host
+      tags:
+        - Nornir
+      summary: Get interfaces from an individual Nornir host
+      description: Get the interfaces of a Nornir host
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+      responses:
+        200:
+          description: Successfully listed all interfaces on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    interfaces:
+                      type: object
+                      properties:
+                        interface_name:
+                          type: object
+                          properties:
+                            description:
+                              type: string
+                            is_enabled:
+                              type: boolean
+                            is_up:
+                              type: boolean
+                            last_flapped:
+                              type: integer
+                            mac_address:
+                              type: string
+                            mtu:
+                              type: integer
+                            speed:
+                              type: integer
+
+  /nornir/interfaces_ip/host:
+    get:
+      operationId: net.get_interfaces_ip_host
+      tags:
+        - Nornir
+      summary: Get interfaces_ip from an individual Nornir host
+      description: Get the interfaces_ip of a Nornir host
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+      responses:
+        200:
+          description: Successfully listed all interfaces_ip on all Nornir hosts
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    interfaces_ip:
+                      type: object
+                      properties:
+                        interface_name:
+                          type: object
+                          properties:
+                            ipv4:
+                              type: object
+                              properties:
+                                address:
+                                  type: object
+                                  properties:
+                                    prefix_length:
+                                      type: integer
+                            ipv6:
+                              type: object
+                              properties:
+                                address:
+                                  type: object
+                                  properties:
+                                    prefix_length:
+                                      type: integer
+
+  /nornir/genie/host:
+    get:
+      operationId: net.genie
+      tags:
+        - Nornir
+      summary: Get Genie output of commands from a Nornir host
+      description: Run an arbitrary command with the `use_genie=True` option on `netmiko_send_command` using Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully read people list operation
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command:
+                      type: object
+
+  /nornir/napalm_cli/host:
+    get:
+      operationId: net.n_cli
+      tags:
+        - Nornir
+      summary: Get Genie output of commands from a Nornir host
+      description: Run an arbitrary command with the `napalm_cli` tasks using Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully read people list operation
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command:
+                      type: object
