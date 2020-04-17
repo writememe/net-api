@@ -26,33 +26,48 @@ cd net-api
     - [groups.yaml](app/inventory/groups.yaml)
     - [hosts.yaml](app/inventory/hosts.yaml)
 
-3) Set two environmental variables, which are used by the application as the default credentials to login to devices:
+3) Create the virtual environment to run the application in and install the requirements. For your convenience, this can be completed by performing the following:
+
+```console
+make venv
+```
+
+5) Set two environmental variables, which are used by the application as the default credentials to login to devices:
 
 ```bash
 export NORNIR_DEFAULT_USERNAME=<someusername>
 export NORNIR_DEFAULT_PASSWORD=<somepassword>
 ```
-4) Validate these environmental variables by entering the following command:
+5) Validate these environmental variables by entering the following command:
 
 ```
 env | grep NORNIR
 ```
 You should see the two environment variables set.
 
-5) Create the virtual environment to run the application in and install the requirements. For your convenience, this can be completed by performing the following:
+6) Setup an environmental variable to point to the NTC templates directory for TextFSM functionality.
 
-```console
-make venv
+In the example below, the virtual environment is using `python3.6`. You will need to adjust this if using anything else:
+
+```bash
+export NET_TEXTFSM=$VIRTUAL_ENV/lib/python3.6/site-packages/ntc_templates/templates
 ```
 
-6) Change to the `app/` directory, then start the flask application:
+7) Validate these environmental variables by entering the following command:
+
+```
+env | grep NET_TEXTFSM
+```
+You should see th environment variable set.
+
+8) Change to the `app/` directory, then start the flask application:
 
 ```python3
 cd app
 python webapp.py
 ```
 
-7) The application will now be running on TCP/5000. For example, if the client IP is 10.0.0.1, the application will be available on http://10.0.0.1:5000
+9) The application will now be running on TCP/5000. For example, if the client IP is 10.0.0.1, the application will be available on http://10.0.0.1:5000
 
 ## Running in Docker
 
