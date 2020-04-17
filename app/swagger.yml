@@ -562,3 +562,34 @@ paths:
                   properties:
                     command:
                       type: object
+
+  /nornir/textfsm/host:
+    get:
+      operationId: net.textfsm
+      tags:
+        - Nornir
+      summary: Get TextFSM output of commands from a Nornir host
+      description: Run an arbitrary command with the `use_textfsm=True` option on `netmiko_send_command` using Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command_output
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully parsed command using TextFSM
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command:
+                      type: object
