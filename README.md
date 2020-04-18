@@ -2,6 +2,10 @@
 
 A documented REST API which returns structured data from network devices
 
+## net-api Overview
+
+![Overview](diagrams/net-api-overview.jpg)
+
 
 ## Supported Environments
 
@@ -105,7 +109,7 @@ NORNIR_DEFAULT_PASSWORD=<somepassword>
 4) Run the docker build, passing in the environment variables in Step 3. This will expose the build on port 5000:
 
 ```dockerfile
-docker run -d --env-file=.env-vars -p 5000:5000 n3t-api:latest
+docker run -d --env-file=.env-vars -p 5000:5000 net-api:latest
 ```
 
 

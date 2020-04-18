@@ -21,3 +21,4 @@
 ## README.md
 
 - [ ] Document up usage
+- [ ] Add overview diagrams
