@@ -14,7 +14,7 @@ basePath: /api
 
 # Below are the paths supported by the webapp application
 paths:
-  /nornir/inventory/all:
+  /nr/inventory/all:
     get:
       operationId: net.get_inv_all
       tags:
@@ -88,7 +88,7 @@ paths:
                     username:
                       type: string
 
-  /nornir/inventory/hosts:
+  /nr/inventory/hosts:
     get:
       operationId: net.get_inv_hosts
       tags:
@@ -124,7 +124,7 @@ paths:
                     username:
                       type: string
 
-  /nornir/inventory/groups:
+  /nr/inventory/groups:
     get:
       operationId: net.get_inv_groups
       tags:
@@ -160,7 +160,7 @@ paths:
                     username:
                       type: string
 
-  /nornir/users:
+  /nr/users:
     get:
       operationId: net.get_users
       tags:
@@ -192,7 +192,7 @@ paths:
                             sshkeys:
                               type: array
 
-  /nornir/facts:
+  /nr/facts:
     get:
       operationId: net.get_facts
       tags:
@@ -229,7 +229,7 @@ paths:
                         vendor:
                           type: string
 
-  /nornir/interfaces:
+  /nr/interfaces:
     get:
       operationId: net.get_interfaces
       tags:
@@ -267,7 +267,7 @@ paths:
                             speed:
                               type: integer
 
-  /nornir/interfaces_ip:
+  /nr/interfaces_ip:
     get:
       operationId: net.get_interfaces_ip
       tags:
@@ -307,7 +307,7 @@ paths:
                                     prefix_length:
                                       type: integer
 
-  /nornir/ntp:
+  /nr/ntp:
     get:
       operationId: net.get_ntp_servers
       tags:
@@ -330,7 +330,7 @@ paths:
                         ntp_server:
                           type: object
 
-  /nornir/users/host:
+  /nr/users/host:
     get:
       operationId: net.get_users_host
       tags:
@@ -368,7 +368,7 @@ paths:
                             sshkeys:
                               type: array
 
-  /nornir/facts/host:
+  /nr/facts/host:
     get:
       operationId: net.get_facts_host
       tags:
@@ -411,7 +411,7 @@ paths:
                         vendor:
                           type: string
 
-  /nornir/interfaces/host:
+  /nr/interfaces/host:
     get:
       operationId: net.get_interfaces_host
       tags:
@@ -455,7 +455,7 @@ paths:
                             speed:
                               type: integer
 
-  /nornir/interfaces_ip/host:
+  /nr/interfaces_ip/host:
     get:
       operationId: net.get_interfaces_ip_host
       tags:
@@ -501,7 +501,7 @@ paths:
                                     prefix_length:
                                       type: integer
 
-  /nornir/genie/host:
+  /nr/genie/host:
     get:
       operationId: net.genie
       tags:
@@ -532,7 +532,7 @@ paths:
                     command:
                       type: object
 
-  /nornir/napalm_cli/host:
+  /nr/napalm_cli/host:
     get:
       operationId: net.n_cli
       tags:
@@ -563,7 +563,7 @@ paths:
                     command:
                       type: object
 
-  /nornir/textfsm/host:
+  /nr/textfsm/host:
     get:
       operationId: net.textfsm
       tags:
