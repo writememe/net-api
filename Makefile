@@ -31,7 +31,7 @@ yamllint:	## Perform YAML linting using yamllint
 venv: ## Install virtualenv, create virtualenv, install requirements for Python 3
 	@echo "--- Creating virtual environment and installing requirements (Python3.x) ---"
 	virtualenv --python=`which python3` venv
-	. ./venv/bin/activate
+	source ./venv/bin/activate
 	pip install -r ./requirements.txt
 
 build: ## Build docker container
