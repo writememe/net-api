@@ -345,7 +345,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully listed all local usernames on all Nornir hosts
+          description: Successfully listed all local usernames on selected Nornir host
           schema:
             type: array
             items:
