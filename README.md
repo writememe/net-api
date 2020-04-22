@@ -19,7 +19,7 @@ As shown in the diagram, net-api handles device authentication, data transformat
 
 This application is made up of the following:
 
-- [Flask] web framework to serve the web application
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) web framework to serve the web application
 - [Connexion](https://connexion.readthedocs.io/en/latest/) to handle HTTP requests and serve the SwaggerUI
 - A fully documented API using [Swagger UI](https://swagger.io/tools/swagger-ui/)
 - [Nornir](https://nornir.readthedocs.io/en/latest/) automation framework for device management
@@ -131,7 +131,7 @@ docker build -t net-api:latest .
 3) Create a file of environmental variables, to be passed into the Docker image as it's starting up.  
    In the below example, the file `.env-vars` contains three environmental variables:
     - `NORNIR_DEFAULT_USERNAME` - Used by the application as the default username to login to devices in the Nornir inventory.
-    - `NORNIR_DEFAULT_PASSWORD` - Used by the application as the default username to login to devices in the Nornir inventory.
+    - `NORNIR_DEFAULT_PASSWORD` - Used by the application as the default password to login to devices in the Nornir inventory.
     - `NET_TEXTFSM`- Used to point to the NTC templates directory for TextFSM functionality
    
 ```bash
@@ -164,15 +164,18 @@ $
 
 When developing this application, there a few primary drivers for the design:
 
-**1) Portable**
+**1) Portable**  
+
 All projects that I develop for public consumption must be portable. This means that where possible, my project will be as portable as possible to other environments. This means any usage of "business logic" or "tribal knowledge" is not baked in.
 
-**2) Extensible**
+**2) Extensible**  
+
 This project is meant to be as extensible as you require. The project has a standard structure which can be followed to develop more API calls, or taken into a different direction.  
 
 Most of you will wince at the lack of security on the front end as the usage of environmental variables to set credentials. This is intentional as most people have their own credential system and authentication mechanisms within their environment. This project would be limited in extensibility if I catered to certain systems to handle those problems.
 
-**3) Useful**
+**3) Useful**  
+
 If I can't see this being useful for others, then there isn't really a point of developing it. I'm hoping that you fire it up in your lab environment or in some small corner of your network and give it a go. I've designed this with it being useful to others as soon as possible.  The idea is that within 20 minutes, you are consuming the API and gaining value rather than tweaking arcane settings.
 
 ### Frontend Authentication
@@ -185,7 +188,8 @@ As mentioned above, the application has no frontend authentication mechanisms. T
 
 ### Credential Management
 
-Credentials are required to connect to the devices in the Nornir inventory. Having them defined as environmental variables allows you to inject these in from most credential management systems.   
+Credentials are required to connect to the devices in the Nornir inventory. Having them defined as environmental variables allows you to inject these in from most credential management systems.  
+
 If that's not feasible or palatable, you can also review the code block below in [app/net.py](app/net.py) and adjust what the `nr.inventory.defaults.username` and `nr.inventory.defaults.password` values are set to. This is the only block of code which needs to be adjusted:
 
 ```python
