@@ -27,7 +27,6 @@ except KeyError:
     print("***** ERROR: Environmental variable `NORNIR_DEFAULT_PASSWORD` not set.")
 
 
-
 # General functions, consumed by other functions
 def get_nr():
     """
@@ -75,8 +74,8 @@ def get_inv_all():
     nr = get_nr()
     # Overwrite the default username and password,
     # so that users cannot exploit it
-    nr.inventory.defaults.username = '**REDACTED**'
-    nr.inventory.defaults.password = '**REDACTED**'
+    nr.inventory.defaults.username = "**REDACTED**"
+    nr.inventory.defaults.password = "**REDACTED**"
     # This calls all results of the get inventory dictionary call.
     r = nr.inventory.get_inventory_dict()
     return jsonify(r)
@@ -112,6 +111,7 @@ def get_inv_groups():
     # Access the groups directory results
     r = r_all["groups"]
     return jsonify(r)
+
 
 # NAPALM getter functions
 def get_users():
@@ -223,7 +223,9 @@ def get_interfaces_host(host):
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
-    r = device.run(name="Processing interfaces", task=napalm_get, getters=["interfaces"])
+    r = device.run(
+        name="Processing interfaces", task=napalm_get, getters=["interfaces"]
+    )
     return to_json(r)
 
 
@@ -239,7 +241,9 @@ def get_interfaces_ip_host(host):
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
-    r = device.run(name="Processing IP interfaces", task=napalm_get, getters=["interfaces_ip"])
+    r = device.run(
+        name="Processing IP interfaces", task=napalm_get, getters=["interfaces_ip"]
+    )
     return to_json(r)
 
 
@@ -302,6 +306,7 @@ def n_cli(host, command):
     # Execute napalm_cli command
     r = device.run(name="NAPALM CLI", task=napalm_cli, commands=[command])
     return to_json(r)
+
 
 def textfsm(host, command):
     """
