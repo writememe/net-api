@@ -624,4 +624,3 @@ paths:
                   properties:
                     command_output:
                       type: object
-

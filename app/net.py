@@ -15,39 +15,67 @@ from nornir.plugins.tasks.networking import napalm_get
 from nornir.plugins.tasks.networking import netmiko_send_command
 from nornir.plugins.tasks.networking import napalm_cli
 from nornir_scrapli.tasks import send_command
-from colorama import Fore, init, Style
+from colorama import Fore, init
+
 # Auto-reset colorama colours back after each print statement
 init(autoreset=True)
 
 # Gathering environmental variables and assigning to variables to use throughout code.
 # Check whether NET_TESTFSM variable has been set, not mandatory, but recommeneded
-if environ.get('NET_TEXTFSM') is None:
+if environ.get("NET_TEXTFSM") is None:
     # Print warning
-    print(Fore.YELLOW + "*" * 15 +  " WARNING: Environmental variable `NET_TEXTFSM` not set. "+ "*" * 15)
+    print(
+        Fore.YELLOW
+        + str("*" * 15)
+        + " WARNING: Environmental variable `NET_TEXTFSM` not set. "
+        + "*" * 15
+    )
 # Check whether NORNIR_DEFAULT_USERNAME variable has been set, not mandatory, but recommeneded
-if environ.get('NORNIR_DEFAULT_USERNAME') is not None:
+if environ.get("NORNIR_DEFAULT_USERNAME") is not None:
     # Set the env_uname to this variable so it can be used for the Nornir inventory
     env_uname = os.environ["NORNIR_DEFAULT_USERNAME"]
 else:
     # Print warning
-    print(Fore.YELLOW + "*" * 15 + " WARNING: Environmental variable `NORNIR_DEFAULT_USERNAME` not set. " + "*" * 15)
+    print(
+        Fore.YELLOW
+        + "*" * 15
+        + " WARNING: Environmental variable `NORNIR_DEFAULT_USERNAME` not set. "
+        + "*" * 15
+    )
     # Set the env_uname to an empty string, so that the code does not error out.
-    # NOTE: It's valid form to use the groups.yaml and hosts.yaml file(s) to store credentials so this will not raise
-    # an exception 
-    env_uname = ''
+    # NOTE: It's valid form to use the groups.yaml and hosts.yaml file(s) to
+    # store credentials so this will not raise an exception
+    env_uname = ""
     # Print supplementary warning
-    print(Fore.MAGENTA + "*" * 15 + " NOTIFICATION: Environmental variable `NORNIR_DEFAULT_USERNAME` now set to '', this may cause all authentication to fail. " + "*" * 15)
+    print(
+        Fore.MAGENTA
+        + "*" * 15
+        + " NOTIFICATION: Environmental variable `NORNIR_DEFAULT_USERNAME` now set to ''."
+        + "This may cause all authentication to fail. "
+        + "*" * 15
+    )
 # Check whether NORNIR_DEFAULT_PASSWORD variable has been set, not mandatory, but recommeneded
-if environ.get('NORNIR_DEFAULT_PASSWORD') is not None:
+if environ.get("NORNIR_DEFAULT_PASSWORD") is not None:
     # Set the env_pword to this variable so it can be used for the Nornir inventory
     env_pword = os.environ["NORNIR_DEFAULT_PASSWORD"]
 else:
-    print(Fore.YELLOW + "*" * 15 +  " WARNING: Environmental variable `NORNIR_DEFAULT_PASSWORD` not set. " + "*" * 15)
+    print(
+        Fore.YELLOW
+        + "*" * 15
+        + " WARNING: Environmental variable `NORNIR_DEFAULT_PASSWORD` not set. "
+        + "*" * 15
+    )
     # Set the env_pword to an empty string, so that the code does not error out.
-    # NOTE: It's valid form to use the groups.yaml and hosts.yaml file(s) to store credentials so this will not raise
-    # an exception 
-    env_pword = ''
-    print(Fore.MAGENTA + "*" * 15 + " NOTIFICATION: Environmental variable `NORNIR_DEFAULT_PASSWORD` now set to '', this may cause all authentication to fail. " + "*" * 15)
+    # NOTE: It's valid form to use the groups.yaml and hosts.yaml file(s) to
+    # store credentials so this will not raise an exception
+    env_pword = ""
+    print(
+        Fore.MAGENTA
+        + "*" * 15
+        + " NOTIFICATION: Environmental variable `NORNIR_DEFAULT_PASSWORD` now set to ''."
+        + "This may cause all authentication to fail. "
+        + "*" * 15
+    )
 
 
 # General functions, consumed by other functions
@@ -372,15 +400,8 @@ def scrapli_cmd(host, command):
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
     # Execute scrapli send command
-    r = device.run(
-        task=send_command,
-        name="Scrapli Send Command",
-        command=command,
-    )
+    r = device.run(task=send_command, name="Scrapli Send Command", command=command)
     # Use genie_parse_output to parse Nornir AggregatedResult via Genie
     output = r[host].scrapli_response.genie_parse_output()
     # Jsonify the host and the output and send the response
-    return jsonify(
-                host=host,
-                command_output=output
-                )
+    return jsonify(host=host, command_output=output)
