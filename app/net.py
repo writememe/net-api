@@ -8,24 +8,46 @@ web front end.
 
 # Import modules
 import os
+from os import environ
 from flask import jsonify
 from nornir import InitNornir
 from nornir.plugins.tasks.networking import napalm_get
 from nornir.plugins.tasks.networking import netmiko_send_command
 from nornir.plugins.tasks.networking import napalm_cli
 from nornir_scrapli.tasks import send_command
+from colorama import Fore, init, Style
+# Auto-reset colorama colours back after each print statement
+init(autoreset=True)
 
 # Gathering environmental variables and assigning to variables to use throughout code.
-# Try/except block(s) to verify whether environmental variables are set
-try:
+# Check whether NET_TESTFSM variable has been set, not mandatory, but recommeneded
+if environ.get('NET_TEXTFSM') is None:
+    # Print warning
+    print(Fore.YELLOW + "*" * 15 +  " WARNING: Environmental variable `NET_TEXTFSM` not set. "+ "*" * 15)
+# Check whether NORNIR_DEFAULT_USERNAME variable has been set, not mandatory, but recommeneded
+if environ.get('NORNIR_DEFAULT_USERNAME') is not None:
+    # Set the env_uname to this variable so it can be used for the Nornir inventory
     env_uname = os.environ["NORNIR_DEFAULT_USERNAME"]
-except KeyError:
-    print("***** ERROR: Environmental variable `NORNIR_DEFAULT_USERNAME` not set.")
-
-try:
+else:
+    # Print warning
+    print(Fore.YELLOW + "*" * 15 + " WARNING: Environmental variable `NORNIR_DEFAULT_USERNAME` not set. " + "*" * 15)
+    # Set the env_uname to an empty string, so that the code does not error out.
+    # NOTE: It's valid form to use the groups.yaml and hosts.yaml file(s) to store credentials so this will not raise
+    # an exception 
+    env_uname = ''
+    # Print supplementary warning
+    print(Fore.MAGENTA + "*" * 15 + " NOTIFICATION: Environmental variable `NORNIR_DEFAULT_USERNAME` now set to '', this may cause all authentication to fail. " + "*" * 15)
+# Check whether NORNIR_DEFAULT_PASSWORD variable has been set, not mandatory, but recommeneded
+if environ.get('NORNIR_DEFAULT_PASSWORD') is not None:
+    # Set the env_pword to this variable so it can be used for the Nornir inventory
     env_pword = os.environ["NORNIR_DEFAULT_PASSWORD"]
-except KeyError:
-    print("***** ERROR: Environmental variable `NORNIR_DEFAULT_PASSWORD` not set.")
+else:
+    print(Fore.YELLOW + "*" * 15 +  " WARNING: Environmental variable `NORNIR_DEFAULT_PASSWORD` not set. " + "*" * 15)
+    # Set the env_pword to an empty string, so that the code does not error out.
+    # NOTE: It's valid form to use the groups.yaml and hosts.yaml file(s) to store credentials so this will not raise
+    # an exception 
+    env_pword = ''
+    print(Fore.MAGENTA + "*" * 15 + " NOTIFICATION: Environmental variable `NORNIR_DEFAULT_PASSWORD` now set to '', this may cause all authentication to fail. " + "*" * 15)
 
 
 # General functions, consumed by other functions
