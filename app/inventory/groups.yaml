@@ -3,6 +3,12 @@
 # Each group is used to attribute back to a platform
 ios:
     platform: ios
+    connection_options:
+        scrapli:
+          platform: cisco_iosxe
+          port: 22
+          extras:
+            auth_strict_key: False
 
 junos:
     platform: junos

@@ -22,3 +22,16 @@
 
 - [ ] Document up usage
 - [ ] Add overview diagrams
+
+# Set environmental variable
+os.environ["NORNIR_DEFAULT_PASSWORD"] = "kev"
+print("PASSWORD environment variable:", os.environ["NORNIR_DEFAULT_PASSWORD"])
+
+# Examples for validation
+# Import module
+from os import environ
+if environ.get('NORNIR_DEFAULT_PASSWORD') is not None:
+    pass
+
+## scrapli
+- [ ] Document up usage

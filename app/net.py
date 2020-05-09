@@ -13,6 +13,7 @@ from nornir import InitNornir
 from nornir.plugins.tasks.networking import napalm_get
 from nornir.plugins.tasks.networking import netmiko_send_command
 from nornir.plugins.tasks.networking import napalm_cli
+from nornir_scrapli.tasks import send_command
 
 # Gathering environmental variables and assigning to variables to use throughout code.
 # Try/except block(s) to verify whether environmental variables are set
@@ -331,3 +332,33 @@ def textfsm(host, command):
         use_genie=False,
     )
     return to_json(r)
+
+
+def scrapli_cmd(host, command):
+    """
+    TODO: Rewrite to say it's using scrapli and nornir with parse genie output
+    Retrieves the results of an individual command for an individual host
+    of the Nornir inventory using the `use_textfsm=True` through the
+    `netmiko_send_command` and prepares it to preparation for
+    consumption by the front end.
+    :param host: The host which is to be queried.
+    :param command: The command to be run on the host.
+    :return jsonify(r): Results after they have been run through jsonify
+    """
+    # Initialise Nornir
+    nr = get_nr()
+    # Filter by the host supplied into the function
+    device = nr.filter(name=str(host))
+    # Execute scrapli send command
+    r = device.run(
+        task=send_command,
+        name="Scrapli Send Command",
+        command=command,
+    )
+    # Use genie_parse_output to parse Nornir AggregatedResult via Genie
+    output = r[host].scrapli_response.genie_parse_output()
+    # Jsonify the host and the output and send the response
+    return jsonify(
+                host=host,
+                command_output=output
+                )
