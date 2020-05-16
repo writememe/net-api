@@ -1,6 +1,6 @@
 ---
 # Github actions workflow file
-name: net-api application
+name: net-api
 
 on:
     push:
