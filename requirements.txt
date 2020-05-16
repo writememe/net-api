@@ -7,3 +7,5 @@ pyats
 black
 pylama
 ntc_templates[dev]
+nornir-scrapli
+bandit

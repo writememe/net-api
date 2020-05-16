@@ -18,7 +18,8 @@ paths:
     get:
       operationId: net.get_inv_all
       tags:
-        - Nornir
+        - nornir
+        - inventory
       summary: Get a list of all inventory information
       description: List all Nornir inventory information
       responses:
@@ -92,7 +93,8 @@ paths:
     get:
       operationId: net.get_inv_hosts
       tags:
-        - Nornir
+        - nornir
+        - inventory
       summary: Get a list of all Nornir hosts in the inventory
       description: List all Nornir hosts
       responses:
@@ -128,7 +130,8 @@ paths:
     get:
       operationId: net.get_inv_groups
       tags:
-        - Nornir
+        - nornir
+        - inventory
       summary: Get a list of all Nornir groups in the inventory
       description: List all Nornir groups
       responses:
@@ -160,13 +163,14 @@ paths:
                     username:
                       type: string
 
-  /nr/users:
+  /nr/users/all:
     get:
       operationId: net.get_users
       tags:
-        - Nornir
-      summary: Get all users from all Nornir hosts
-      description: Use the `get_users` function to retrieve all local usernames on all Nornir hosts
+        - nornir
+        - napalm
+      summary: Get all users from all Nornir hosts using NAPALM
+      description: Use the `get_users` NAPALM function to retrieve all local usernames on all Nornir hosts
       responses:
         200:
           description: Successfully listed all local usernames on all Nornir hosts
@@ -192,13 +196,14 @@ paths:
                             sshkeys:
                               type: array
 
-  /nr/facts:
+  /nr/facts/all:
     get:
       operationId: net.get_facts
       tags:
-        - Nornir
-      summary: Get all facts from all Nornir hosts
-      description: Use the `get_facts` function to retrieve all facts on all Nornir hosts
+        - nornir
+        - napalm
+      summary: Get all facts from all Nornir hosts using NAPALM
+      description: Use the `get_facts` NAPALM function to retrieve all facts on all Nornir hosts
       responses:
         200:
           description: Successfully listed all facts on all Nornir hosts
@@ -229,13 +234,14 @@ paths:
                         vendor:
                           type: string
 
-  /nr/interfaces:
+  /nr/interfaces/all:
     get:
       operationId: net.get_interfaces
       tags:
-        - Nornir
-      summary: Get all interfaces from all Nornir hosts
-      description: Use the `get_interfaces` function to retrieve all interfaces on all Nornir hosts
+        - nornir
+        - napalm
+      summary: Get all interfaces from all Nornir hosts using NAPALM
+      description: Use the `get_interfaces` NAPALM function to retrieve all interfaces on all Nornir hosts
       responses:
         200:
           description: Successfully listed all interfaces on all Nornir hosts
@@ -267,16 +273,17 @@ paths:
                             speed:
                               type: integer
 
-  /nr/interfaces_ip:
+  /nr/interfaces_ip/all:
     get:
       operationId: net.get_interfaces_ip
       tags:
-        - Nornir
-      summary: Get all interfaces from all Nornir hosts
-      description: Use the `get_interfaces` function to retrieve all interfaces on all Nornir hosts
+        - nornir
+        - napalm
+      summary: Get all interface IP addressing from all Nornir hosts using NAPALM
+      description: Use the `get_interfaces_ip` NAPALM function to retrieve all interfaces on all Nornir hosts
       responses:
         200:
-          description: Successfully listed all interfaces on all Nornir hosts
+          description: Successfully listed all interface IP addresses on all Nornir hosts
           schema:
             type: array
             items:
@@ -307,13 +314,14 @@ paths:
                                     prefix_length:
                                       type: integer
 
-  /nr/ntp:
+  /nr/ntp/all:
     get:
       operationId: net.get_ntp_servers
       tags:
-        - Nornir
-      summary: Get all NTP servers from all Nornir hosts
-      description: Use the `get_ntp_servers` function to retrieve all NTP servers on all Nornir hosts
+        - nornir
+        - napalm
+      summary: Get all NTP servers from all Nornir hosts using NAPALM
+      description: Use the `get_ntp_servers` NAPALM function to retrieve all NTP servers on all Nornir hosts
       responses:
         200:
           description: Successfully listed all NTP servers on all Nornir hosts
@@ -334,9 +342,10 @@ paths:
     get:
       operationId: net.get_users_host
       tags:
-        - Nornir
-      summary: Get users from an individual Nornir host
-      description: Get the users of a Nornir host
+        - nornir
+        - napalm
+      summary: Get users from an individual Nornir host using NAPALM
+      description: Use the `get_users` NAPALM function to retrieve all local usernames on an individual host
       parameters:
         - name: host
           in: query
@@ -372,9 +381,10 @@ paths:
     get:
       operationId: net.get_facts_host
       tags:
-        - Nornir
-      summary: Get facts from an individual Nornir host
-      description: Get the facts of a Nornir host
+        - nornir
+        - napalm
+      summary: Get facts from an individual Nornir host using NAPALM
+      description: Use the `get_facts` NAPALM function to retrieve facts on an individual host
       parameters:
         - name: host
           in: query
@@ -383,7 +393,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully read Nornir hosts fact
+          description: Successfully listed facts on selected Nornir host
           schema:
             type: array
             items:
@@ -415,9 +425,10 @@ paths:
     get:
       operationId: net.get_interfaces_host
       tags:
-        - Nornir
-      summary: Get interfaces from an individual Nornir host
-      description: Get the interfaces of a Nornir host
+        - nornir
+        - napalm
+      summary: Get interfaces from an individual Nornir host using NAPALM
+      description: Use the `get_interfaces` NAPALM function to retrieve interfaces on an individual host
       parameters:
         - name: host
           in: query
@@ -426,7 +437,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully listed all interfaces on all Nornir hosts
+          description: Successfully listed all interfaces on selected Nornir host
           schema:
             type: array
             items:
@@ -459,9 +470,10 @@ paths:
     get:
       operationId: net.get_interfaces_ip_host
       tags:
-        - Nornir
-      summary: Get interfaces_ip from an individual Nornir host
-      description: Get the interfaces_ip of a Nornir host
+        - nornir
+        - napalm
+      summary: Get all interface IP addressing from an individual Nornir host using NAPALM
+      description: Use the `get_interfaces_ip` NAPALM function to retrieve all interfaces on an individual host
       parameters:
         - name: host
           in: query
@@ -470,7 +482,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully listed all interfaces_ip on all Nornir hosts
+          description: Successfully listed all interface IP addresses on selected Nornir host
           schema:
             type: array
             items:
@@ -505,8 +517,10 @@ paths:
     get:
       operationId: net.genie
       tags:
-        - Nornir
-      summary: Get Genie output of commands from a Nornir host
+        - nornir
+        - netmiko
+        - genie
+      summary: Get Genie output of a command from from an individual Nornir host using Netmiko
       description: Run an arbitrary command with the `use_genie=True` option on `netmiko_send_command` using Nornir
       parameters:
         - name: host
@@ -521,7 +535,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully read people list operation
+          description: Successfully parsed command using Genie on selected Nornir host
           schema:
             type: array
             items:
@@ -536,9 +550,10 @@ paths:
     get:
       operationId: net.n_cli
       tags:
-        - Nornir
-      summary: Get Genie output of commands from a Nornir host
-      description: Run an arbitrary command with the `napalm_cli` tasks using Nornir
+        - nornir
+        - napalm
+      summary: Get output of a command from an individual Nornir host using NAPALM
+      description: Run an arbitrary command with the `napalm_cli` NAPALM task using Nornir
       parameters:
         - name: host
           in: query
@@ -552,7 +567,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully read people list operation
+          description: Successfully run command using NAPALM_CLI on selected Nornir host
           schema:
             type: array
             items:
@@ -567,8 +582,10 @@ paths:
     get:
       operationId: net.textfsm
       tags:
-        - Nornir
-      summary: Get TextFSM output of commands from a Nornir host
+        - nornir
+        - textfsm
+        - netmiko
+      summary: Get TextFSM output of a command from from an individual Nornir host using Netmiko
       description: Run an arbitrary command with the `use_textfsm=True` option on `netmiko_send_command` using Nornir
       parameters:
         - name: host
@@ -583,7 +600,7 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully parsed command using TextFSM
+          description: Successfully parsed command using TextFSM on selected Nornir host
           schema:
             type: array
             items:
@@ -593,3 +610,38 @@ paths:
                   properties:
                     command_output:
                       type: object
+
+  /nr/scrapli/host:
+    get:
+      operationId: net.scrapli_cmd
+      tags:
+        - nornir
+        - scrapli
+        - genie
+      summary: Get Genie output of a command from from an individual Nornir host using Scrapli
+      description: Run an arbitrary command with `send_command`and parse output using Genie and Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully parsed command using Genie on selected Nornir host
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command_output:
+                      type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
