@@ -1,0 +1,38 @@
+---
+# Github actions workflow file
+name: Python package
+
+on:
+    push:
+      branches: [ feature/add-documentation) ]
+    pull_request:
+      branches: [ master ]
+
+jobs:
+  build:
+    name: Linting
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip freeze install
+    - name: Execute black formatting check
+      run: make black
+    - name: Execute pylama check
+      run: make pylama
+    - name: Execute yamllint check
+      run: make yamllint
+    - name: Execute bandit check
+      run: make bandit

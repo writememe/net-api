@@ -8,10 +8,10 @@ ENV_FILE = .env-vars
 help:
 	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | \
 	sort | \
-	awk -F ':.*?## ' 'NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}'
+	awk -F ':.*?## ' 'NF==2 {printf "\033[35m  %-25s\033[0m %s\n", $$1, $$2}'
 
 .PHONY:	lint-all
-lint-all:	black pylama yamllint  ## Perform all linting checks (black, pylama and yamllint).
+lint-all:	black pylama yamllint bandit ## Perform all linting and security checks (black, pylama, yamllint and bandit).
 
 .PHONY:	black
 black: ## Format code using black
@@ -27,6 +27,11 @@ pylama:	## Perform python linting using pylama
 yamllint:	## Perform YAML linting using yamllint
 	@echo "--- Performing yamllint linting ---"
 	yamllint .
+
+.PHONY: bandit
+bandit:	## Perform python code security checks using bandit
+	@echo "--- Performing bandit code security scanning ---"
+	bandit -v --exclude ./venv --recursive --format json . --verbose
 
 venv: ## Install virtualenv, create virtualenv, install requirements for Python 3
 	@echo "--- Creating virtual environment and installing requirements (Python3.x) ---"
