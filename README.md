@@ -3,6 +3,18 @@
 net-api is a documented REST API platform which returns structured data from network devices. This application is a mix of technologies and techniques and has been developed to
 highlight what is possible with multiple open source projects.
 
+# Table of Contents
+
+- [Overview](##net-api-overview)
+  - [What's under the hood?](#whats-under-the-hood)
+  - [Supported Environments](#supported-environments)
+  - [More Examples](#more-examples)
+- [Installation/Operating Instructions](#installationoperating-instructions)
+  - [Python 3.x Installation and Operation](#python-3x-installation-and-operation)
+  - [Docker Installation and Operation](#docker-installation-and-operation)
+- [Design Decisions](#design-decisions)
+  - [Frontend Authentication](#frontend-authentication)
+  - [Credential Management](#credential-management)
 ## net-api Overview
 
 The overview of net-api is shown in the diagram below:

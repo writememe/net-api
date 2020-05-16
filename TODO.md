@@ -21,7 +21,7 @@
 ## README.md
 
 - [ ] Document up usage
-- [ ] Add overview diagrams
+- [x] Add overview diagrams
 
 # Set environmental variable
 os.environ["NORNIR_DEFAULT_PASSWORD"] = "kev"

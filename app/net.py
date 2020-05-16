@@ -9,7 +9,7 @@ web front end.
 # Import modules
 import os
 from os import environ
-from flask import jsonify, abort
+from flask import jsonify
 from nornir import InitNornir
 from nornir.plugins.tasks.networking import napalm_get
 from nornir.plugins.tasks.networking import netmiko_send_command
@@ -259,7 +259,7 @@ def get_users_host(host):
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
     r = device.run(name="Processing users", task=napalm_get, getters=["users"])
-        # If/Else block to validate whether the task failed or not
+    # If/Else block to validate whether the task failed or not
     if r[host].failed is True:
         # Jsonify the host and the output, send the response and status code 500
         print("Hello I'm True and I've failed")

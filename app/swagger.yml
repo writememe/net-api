@@ -474,7 +474,7 @@ paths:
         - napalm
       summary: Get all interface IP addressing from an individual Nornir host using NAPALM
       description: Use the `get_interfaces_ip` NAPALM function to retrieve all interfaces on an individual host
-      parameters:  
+      parameters:
         - name: host
           in: query
           type: string
@@ -619,7 +619,7 @@ paths:
         - scrapli
         - genie
       summary: Get Genie output of a command from from an individual Nornir host using Scrapli
-      description: Run an arbitrary command with `send_command`and parse output using Genie and Nornir 
+      description: Run an arbitrary command with `send_command`and parse output using Genie and Nornir
       parameters:
         - name: host
           in: query
