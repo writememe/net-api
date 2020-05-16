@@ -23,15 +23,8 @@
 - [ ] Document up usage
 - [x] Add overview diagrams
 
-# Set environmental variable
-os.environ["NORNIR_DEFAULT_PASSWORD"] = "kev"
-print("PASSWORD environment variable:", os.environ["NORNIR_DEFAULT_PASSWORD"])
-
-# Examples for validation
-# Import module
-from os import environ
-if environ.get('NORNIR_DEFAULT_PASSWORD') is not None:
-    pass
+## .github/workflows/main.yaml
+- [ ] Fix the trigger on the job to exclude the README.md   
 
 ## scrapli
 - [ ] Document up usage
