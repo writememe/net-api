@@ -9,7 +9,7 @@ web front end.
 # Import modules
 import os
 from os import environ
-from flask import jsonify
+from flask import jsonify, abort
 from nornir import InitNornir
 from nornir.plugins.tasks.networking import napalm_get
 from nornir.plugins.tasks.networking import netmiko_send_command
@@ -259,7 +259,16 @@ def get_users_host(host):
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
     r = device.run(name="Processing users", task=napalm_get, getters=["users"])
-    return to_json(r)
+        # If/Else block to validate whether the task failed or not
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        print("Hello I'm True and I've failed")
+        return to_json(r), 500
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        print("Hello I'm False and I've succeeded")
+        return to_json(r), 200
+    # return to_json(r)
 
 
 def get_interfaces_host(host):
@@ -401,7 +410,13 @@ def scrapli_cmd(host, command):
     device = nr.filter(name=str(host))
     # Execute scrapli send command
     r = device.run(task=send_command, name="Scrapli Send Command", command=command)
-    # Use genie_parse_output to parse Nornir AggregatedResult via Genie
-    output = r[host].scrapli_response.genie_parse_output()
-    # Jsonify the host and the output and send the response
-    return jsonify(host=host, command_output=output)
+    # If/Else block to validate whether the task failed or not
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return jsonify(host=host, command_output=""), 500
+    elif r[host].failed is False:
+        print("Hello I'm False and I've succeeded")
+        # Use genie_parse_output to parse Nornir AggregatedResult via Genie
+        output = r[host].scrapli_response.genie_parse_output()
+        # Jsonify the host and the output, send the response and status code 200
+        return jsonify(host=host, command_output=output), 200
