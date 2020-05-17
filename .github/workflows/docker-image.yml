@@ -5,13 +5,13 @@ name: net-api-docker
 on:
     push:
         branches:
-          - master
+            - master
         paths-ignore:
-          - 'README.md'
-          - 'TODO.md'
+            - 'README.md'
+            - 'TODO.md'
     pull_request:
         branches:
-          - master
+            - master
 
 jobs:
     build:
@@ -22,6 +22,5 @@ jobs:
             - name: Build the Docker image
               run: docker build . --file Dockerfile --tag writememe/net-api:latest
             - name: Run the Docker image
-              run: 	docker run -d --env-file=.env-vars -p 5000:5000 writememe/net-api:latest
+              run: docker run -d --env-file=.env-vars -p 5000:5000 writememe/net-api:latest
 
-      
