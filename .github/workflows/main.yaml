@@ -12,8 +12,8 @@ on:
         branches:
             - master
         paths-ignore:
-          - 'README.md'
-          - 'TODO.md'
+            - 'README.md'
+            - 'TODO.md'
 
 jobs:
     build:
