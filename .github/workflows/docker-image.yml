@@ -15,12 +15,13 @@ on:
 
 jobs:
     build:
-    runs-on: ubuntu-latest
-    steps:
-        - uses: actions/checkout@v2
-        - name: Build the Docker image
-          run: docker build . --file Dockerfile --tag writememe/net-api:latest
-        - name: Run the Docker image
-          run: 	docker run -d --env-file=.env-vars -p 5000:5000 writememe/net-api:latest
+        name: Docker Build and Run
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Build the Docker image
+              run: docker build . --file Dockerfile --tag writememe/net-api:latest
+            - name: Run the Docker image
+              run: 	docker run -d --env-file=.env-vars -p 5000:5000 writememe/net-api:latest
 
       
