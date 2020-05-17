@@ -166,9 +166,9 @@ def get_inv_groups():
 def get_users_all():
     """
     Retrieves the results of `get_users` for all hosts in the Nornir
-    inventory and prepares it to preparation for consumption by
+    inventory and prepares it for consumption by
     the front end.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -191,9 +191,9 @@ def get_users_all():
 def get_facts_all():
     """
     Retrieves the results of `get_facts` for all hosts in the Nornir
-    inventory and prepares it to preparation for consumption by
+    inventory and prepares it for consumption by
     the front end.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -214,9 +214,9 @@ def get_facts_all():
 def get_interfaces_all():
     """
     Retrieves the results of `get_interfaces` for all hosts in the Nornir
-    inventory and prepares it to preparation for consumption by
+    inventory and prepares it for consumption by
     the front end.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -237,9 +237,9 @@ def get_interfaces_all():
 def get_interfaces_ip_all():
     """
     Retrieves the results of `get_interfaces_ip` for all hosts in the Nornir
-    inventory and prepares it to preparation for consumption by
+    inventory and prepares it for consumption by
     the front end.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -260,7 +260,7 @@ def get_interfaces_ip_all():
 def get_ntp_servers_all():
     """
     Retrieves the results of `get_ntp_servers` for all hosts in the Nornir
-    inventory and prepares it to preparation for consumption by
+    inventory and prepares it for consumption by
     the front end.
     :return to_json(r): Results after they have been run through jsonify
     """
@@ -285,7 +285,7 @@ def get_facts_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -310,7 +310,7 @@ def get_users_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -336,7 +336,7 @@ def get_interfaces_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -364,7 +364,7 @@ def get_interfaces_ip_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -392,7 +392,7 @@ def get_ntp_servers_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -421,7 +421,7 @@ def get_getter_host(host, getter):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param getter: The getter to be retrieved.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -449,7 +449,7 @@ def napalm_cli_host(host, command):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -477,7 +477,7 @@ def netmiko_genie_host(host, command):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -511,7 +511,7 @@ def netmiko_textfsm_host(host, command):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return to_json(r), status_code: Results after they have been run through 
+    :return to_json(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -570,11 +570,11 @@ def scrapli_genie_host(host, command):
     """
     Retrieves the results of an individual command for an individual host
     of the Nornir inventory using Scrapli `send_command`, parsed through the
-    genie parser and prepares it to preparation for consumption by the front end.
+    genie parser and prepares it for consumption by the front end.
 
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return jsonify(r), status_code: Results after they have been run through 
+    :return jsonify(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -600,11 +600,11 @@ def scrapli_textfsm_host(host, command):
     """
     Retrieves the results of an individual command for an individual host
     of the Nornir inventory using Scrapli `send_command`, parsed through the
-    TextFSM parser and prepares it to preparation for consumption by the front end.
+    TextFSM parser and prepares it for consumption by the front end.
 
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return jsonify(r), status_code: Results after they have been run through 
+    :return jsonify(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
@@ -634,7 +634,7 @@ def scrapli_host(host, command):
 
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return jsonify(r), status_code: Results after they have been run through 
+    :return jsonify(r), status_code: Results after they have been run through
      jsonify and respective status code
     """
     # Initialise Nornir
