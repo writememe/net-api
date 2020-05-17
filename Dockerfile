@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 # Add labels about the Docker Build
 LABEL maintainer="Daniel Teycheney danielfjteycheney@gmail.com"
-LABEL version="1.0"
+LABEL version="1.0.0"
 LABEL description="This image contains the net-api \
 REST interface for various network devices."
 

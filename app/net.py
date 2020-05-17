@@ -11,9 +11,7 @@ import os
 from os import environ
 from flask import jsonify
 from nornir import InitNornir
-from nornir.plugins.tasks.networking import napalm_get
-from nornir.plugins.tasks.networking import netmiko_send_command
-from nornir.plugins.tasks.networking import napalm_cli
+from nornir.plugins.tasks.networking import napalm_get, netmiko_send_command, napalm_cli
 from nornir_scrapli.tasks import send_command
 from colorama import Fore, init
 
@@ -165,69 +163,120 @@ def get_inv_groups():
 
 
 # NAPALM getter functions
-def get_users():
+def get_users_all():
     """
     Retrieves the results of `get_users` for all hosts in the Nornir
     inventory and prepares it to preparation for consumption by
     the front end.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
+    # Execute napalm get_users task
     r = nr.run(task=napalm_get, getters=["users"])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    print("*" * 20)
+    print(r.failed)
+    if r.failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r.failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def get_facts():
+def get_facts_all():
     """
     Retrieves the results of `get_facts` for all hosts in the Nornir
     inventory and prepares it to preparation for consumption by
     the front end.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
+    # Execute napalm get_facts task
     r = nr.run(task=napalm_get, getters=["facts"])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r.failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r.failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def get_interfaces():
+def get_interfaces_all():
     """
     Retrieves the results of `get_interfaces` for all hosts in the Nornir
     inventory and prepares it to preparation for consumption by
     the front end.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
+    # Execute napalm get_interfaces task
     r = nr.run(task=napalm_get, getters=["interfaces"])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r.failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r.failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def get_interfaces_ip():
+def get_interfaces_ip_all():
     """
     Retrieves the results of `get_interfaces_ip` for all hosts in the Nornir
     inventory and prepares it to preparation for consumption by
     the front end.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
+    # Execute napalm get_interfaces_ip task
     r = nr.run(task=napalm_get, getters=["interfaces_ip"])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r.failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r.failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def get_ntp_servers():
+def get_ntp_servers_all():
     """
     Retrieves the results of `get_ntp_servers` for all hosts in the Nornir
     inventory and prepares it to preparation for consumption by
     the front end.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r): Results after they have been run through jsonify
     """
     # Initialise Nornir
     nr = get_nr()
+    # Execute napalm get_ntp_servers task
     r = nr.run(task=napalm_get, getters=["ntp_servers"])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r.failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r.failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
 def get_facts_host(host):
@@ -236,14 +285,23 @@ def get_facts_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
     r = device.run(name="Processing facts", task=napalm_get, getters=["facts"])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
 def get_users_host(host):
@@ -252,23 +310,24 @@ def get_users_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
+    # Execute napalm get_users task
     r = device.run(name="Processing users", task=napalm_get, getters=["users"])
     # If/Else block to validate whether the task failed or not
+    # If the task fails
     if r[host].failed is True:
         # Jsonify the host and the output, send the response and status code 500
-        print("Hello I'm True and I've failed")
         return to_json(r), 500
+    # If the task succeeds
     elif r[host].failed is False:
         # Jsonify the host and the output, send the response and status code 200
-        print("Hello I'm False and I've succeeded")
         return to_json(r), 200
-    # return to_json(r)
 
 
 def get_interfaces_host(host):
@@ -277,16 +336,26 @@ def get_interfaces_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
+    # Execute napalm get_interfaces task
     r = device.run(
         name="Processing interfaces", task=napalm_get, getters=["interfaces"]
     )
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
 def get_interfaces_ip_host(host):
@@ -295,16 +364,54 @@ def get_interfaces_ip_host(host):
     of the Nornir inventory and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
+    # Execute napalm get_interfaces_ip task
     r = device.run(
         name="Processing IP interfaces", task=napalm_get, getters=["interfaces_ip"]
     )
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
+
+
+def get_ntp_servers_host(host):
+    """
+    Retrieves the results of `get_ntp_servers` for an individual host
+    of the Nornir inventory and prepares it to preparation for
+    consumption by the front end.
+    :param host: The host which is to be queried.
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
+    """
+    # Initialise Nornir
+    nr = get_nr()
+    # Filter by the host supplied into the function
+    device = nr.filter(name=str(host))
+    # Execute napalm get_ntp_servers task
+    r = device.run(
+        name="Processing NTP Servers", task=napalm_get, getters=["ntp_servers"]
+    )
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
 def get_getter_host(host, getter):
@@ -314,17 +421,55 @@ def get_getter_host(host, getter):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param getter: The getter to be retrieved.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
     # Filter by the host supplied into the function
     device = nr.filter(name=str(host))
+    # Execute napalm get_interfaces task
     r = device.run(name="Processing IP interfaces", task=napalm_get, getters=[getter])
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def genie(host, command):
+def napalm_cli_host(host, command):
+    """
+    Retrieves the results of an individual command for an individual host
+    of the Nornir inventory using the `napalm_cli` function
+    and prepares it to preparation for
+    consumption by the front end.
+    :param host: The host which is to be queried.
+    :param command: The command to be run on the host.
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
+    """
+    # Initialise Nornir
+    nr = get_nr()
+    # Filter by the host supplied into the function
+    device = nr.filter(name=str(host))
+    # Execute napalm_cli command
+    r = device.run(name="NAPALM CLI", task=napalm_cli, commands=[command])
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
+
+
+def netmiko_genie_host(host, command):
     """
     Retrieves the results of an individual command for an individual host
     of the Nornir inventory using the `use_genie=True` through the
@@ -332,7 +477,8 @@ def genie(host, command):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
@@ -346,29 +492,18 @@ def genie(host, command):
         use_textfsm=False,
         use_genie=True,
     )
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def n_cli(host, command):
-    """
-    Retrieves the results of an individual command for an individual host
-    of the Nornir inventory using the `napalm_cli` function
-    and prepares it to preparation for
-    consumption by the front end.
-    :param host: The host which is to be queried.
-    :param command: The command to be run on the host.
-    :return jsonify(r): Results after they have been run through jsonify
-    """
-    # Initialise Nornir
-    nr = get_nr()
-    # Filter by the host supplied into the function
-    device = nr.filter(name=str(host))
-    # Execute napalm_cli command
-    r = device.run(name="NAPALM CLI", task=napalm_cli, commands=[command])
-    return to_json(r)
-
-
-def textfsm(host, command):
+def netmiko_textfsm_host(host, command):
     """
     Retrieves the results of an individual command for an individual host
     of the Nornir inventory using the `use_textfsm=True` through the
@@ -376,7 +511,8 @@ def textfsm(host, command):
     consumption by the front end.
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
@@ -388,21 +524,58 @@ def textfsm(host, command):
         name="Netmiko Command (TextFSM)",
         command_string=command,
         use_textfsm=True,
-        use_genie=False,
     )
-    return to_json(r)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
 
 
-def scrapli_cmd(host, command):
+def netmiko_host(host, command):
     """
-    TODO: Rewrite to say it's using scrapli and nornir with parse genie output
     Retrieves the results of an individual command for an individual host
-    of the Nornir inventory using the `use_textfsm=True` through the
+    of the Nornir inventory using the
     `netmiko_send_command` and prepares it to preparation for
     consumption by the front end.
     :param host: The host which is to be queried.
     :param command: The command to be run on the host.
-    :return jsonify(r): Results after they have been run through jsonify
+    :return to_json(r), status_code: Results after they have been run through
+     jsonify and respective status code
+    """
+    # Initialise Nornir
+    nr = get_nr()
+    # Filter by the host supplied into the function
+    device = nr.filter(name=str(host))
+    # Execute netmiko send command, using Genie
+    r = device.run(
+        task=netmiko_send_command, name="Netmiko Command", command_string=command,
+    )
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200
+
+
+def scrapli_genie_host(host, command):
+    """
+    Retrieves the results of an individual command for an individual host
+    of the Nornir inventory using Scrapli `send_command`, parsed through the
+    genie parser and prepares it to preparation for consumption by the front end.
+
+    :param host: The host which is to be queried.
+    :param command: The command to be run on the host.
+    :return jsonify(r), status_code: Results after they have been run through 
+     jsonify and respective status code
     """
     # Initialise Nornir
     nr = get_nr()
@@ -411,12 +584,71 @@ def scrapli_cmd(host, command):
     # Execute scrapli send command
     r = device.run(task=send_command, name="Scrapli Send Command", command=command)
     # If/Else block to validate whether the task failed or not
+    # If the task fails
     if r[host].failed is True:
         # Jsonify the host and the output, send the response and status code 500
         return jsonify(host=host, command_output=""), 500
+    # If the task succeeds
     elif r[host].failed is False:
-        print("Hello I'm False and I've succeeded")
         # Use genie_parse_output to parse Nornir AggregatedResult via Genie
         output = r[host].scrapli_response.genie_parse_output()
         # Jsonify the host and the output, send the response and status code 200
         return jsonify(host=host, command_output=output), 200
+
+
+def scrapli_textfsm_host(host, command):
+    """
+    Retrieves the results of an individual command for an individual host
+    of the Nornir inventory using Scrapli `send_command`, parsed through the
+    TextFSM parser and prepares it to preparation for consumption by the front end.
+
+    :param host: The host which is to be queried.
+    :param command: The command to be run on the host.
+    :return jsonify(r), status_code: Results after they have been run through 
+     jsonify and respective status code
+    """
+    # Initialise Nornir
+    nr = get_nr()
+    # Filter by the host supplied into the function
+    device = nr.filter(name=str(host))
+    # Execute scrapli send command
+    r = device.run(task=send_command, name="Scrapli Send Command", command=command)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return jsonify(host=host, command_output=""), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Use genie_parse_output to parse Nornir AggregatedResult via TextFSM
+        output = r[host].scrapli_response.textfsm_parse_output()
+        # Jsonify the host and the output, send the response and status code 200
+        return jsonify(host=host, command_output=output), 200
+
+
+def scrapli_host(host, command):
+    """
+    Retrieves the results of an individual command for an individual host
+    of the Nornir inventory using Scrapli `send_command` and prepares 
+    it for consumption by the front end.
+
+    :param host: The host which is to be queried.
+    :param command: The command to be run on the host.
+    :return jsonify(r), status_code: Results after they have been run through 
+     jsonify and respective status code
+    """
+    # Initialise Nornir
+    nr = get_nr()
+    # Filter by the host supplied into the function
+    device = nr.filter(name=str(host))
+    # Execute scrapli send command
+    r = device.run(task=send_command, name="Scrapli Send Command", command=command)
+    # If/Else block to validate whether the task failed or not
+    # If the task fails
+    if r[host].failed is True:
+        # Jsonify the host and the output, send the response and status code 500
+        return to_json(r), 500
+    # If the task succeeds
+    elif r[host].failed is False:
+        # Jsonify the host and the output, send the response and status code 200
+        return to_json(r), 200

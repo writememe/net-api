@@ -2,9 +2,9 @@
 
 swagger: "2.0"
 info:
-  description: Swagger configuration file for NetAPI
+  description: Swagger configuration file for net-api
   version: "1.0.0"
-  title: NetAPI Rest Article
+  title: net-api Rest Article
 consumes:
   - application/json
 produces:
@@ -163,9 +163,9 @@ paths:
                     username:
                       type: string
 
-  /nr/users/all:
+  /nr/napalm/users/all:
     get:
-      operationId: net.get_users
+      operationId: net.get_users_all
       tags:
         - nornir
         - napalm
@@ -195,10 +195,12 @@ paths:
                               type: string
                             sshkeys:
                               type: array
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/facts/all:
+  /nr/napalm/facts/all:
     get:
-      operationId: net.get_facts
+      operationId: net.get_facts_all
       tags:
         - nornir
         - napalm
@@ -233,10 +235,12 @@ paths:
                           type: integer
                         vendor:
                           type: string
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/interfaces/all:
+  /nr/napalm/interfaces/all:
     get:
-      operationId: net.get_interfaces
+      operationId: net.get_interfaces_all
       tags:
         - nornir
         - napalm
@@ -272,10 +276,12 @@ paths:
                               type: integer
                             speed:
                               type: integer
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/interfaces_ip/all:
+  /nr/napalm/interfaces_ip/all:
     get:
-      operationId: net.get_interfaces_ip
+      operationId: net.get_interfaces_ip_all
       tags:
         - nornir
         - napalm
@@ -313,10 +319,12 @@ paths:
                                   properties:
                                     prefix_length:
                                       type: integer
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/ntp/all:
+  /nr/napalm/ntp_servers/all:
     get:
-      operationId: net.get_ntp_servers
+      operationId: net.get_ntp_servers_all
       tags:
         - nornir
         - napalm
@@ -337,8 +345,10 @@ paths:
                       properties:
                         ntp_server:
                           type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/users/host:
+  /nr/napalm/users/host:
     get:
       operationId: net.get_users_host
       tags:
@@ -376,8 +386,10 @@ paths:
                               type: string
                             sshkeys:
                               type: array
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/facts/host:
+  /nr/napalm/facts/host:
     get:
       operationId: net.get_facts_host
       tags:
@@ -420,8 +432,10 @@ paths:
                           type: integer
                         vendor:
                           type: string
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/interfaces/host:
+  /nr/napalm/interfaces/host:
     get:
       operationId: net.get_interfaces_host
       tags:
@@ -465,8 +479,10 @@ paths:
                               type: integer
                             speed:
                               type: integer
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/interfaces_ip/host:
+  /nr/napalm/interfaces_ip/host:
     get:
       operationId: net.get_interfaces_ip_host
       tags:
@@ -512,30 +528,26 @@ paths:
                                   properties:
                                     prefix_length:
                                       type: integer
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/genie/host:
+  /nr/napalm/ntp_servers/host:
     get:
-      operationId: net.genie
+      operationId: net.get_ntp_servers_host
       tags:
         - nornir
-        - netmiko
-        - genie
-      summary: Get Genie output of a command from from an individual Nornir host using Netmiko
-      description: Run an arbitrary command with the `use_genie=True` option on `netmiko_send_command` using Nornir
+        - napalm
+      summary: Get all interface NTP servers from an individual Nornir host using NAPALM
+      description: Use the `get_ntp_servers` NAPALM function to retrieve all interfaces on an individual host
       parameters:
         - name: host
           in: query
           type: string
           description: Name of the host
           required: true
-        - name: command
-          in: query
-          type: string
-          description: The command to be parsed
-          required: true
       responses:
         200:
-          description: Successfully parsed command using Genie on selected Nornir host
+          description: Successfully listed all NTP servers on selected Nornir host
           schema:
             type: array
             items:
@@ -543,12 +555,17 @@ paths:
                 host:
                   type: object
                   properties:
-                    command:
+                    ntp_servers:
                       type: object
+                      properties:
+                        ntp_server:
+                          type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/napalm_cli/host:
+  /nr/napalm/napalm_cli/host:
     get:
-      operationId: net.n_cli
+      operationId: net.napalm_cli_host
       tags:
         - nornir
         - napalm
@@ -577,10 +594,12 @@ paths:
                   properties:
                     command:
                       type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/textfsm/host:
+  /nr/netmiko/textfsm/host:
     get:
-      operationId: net.textfsm
+      operationId: net.netmiko_textfsm_host
       tags:
         - nornir
         - textfsm
@@ -610,10 +629,81 @@ paths:
                   properties:
                     command_output:
                       type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
 
-  /nr/scrapli/host:
+  /nr/netmiko/genie/host:
     get:
-      operationId: net.scrapli_cmd
+      operationId: net.netmiko_genie_host
+      tags:
+        - nornir
+        - genie
+        - netmiko
+      summary: Get Genie output of a command from from an individual Nornir host using Netmiko
+      description: Run an arbitrary command with the `use_genie=True` option on `netmiko_send_command` using Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully parsed command using Genie on selected Nornir host
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command_output:
+                      type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
+
+  /nr/netmiko/host:
+    get:
+      operationId: net.netmiko_host
+      tags:
+        - nornir
+        - netmiko
+      summary: Get output of a command from from an individual Nornir host using Netmiko
+      description: Run an arbitrary command with the `netmiko_send_command` using Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully sent command using Netmiko on selected Nornir host
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command:
+                      type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
+
+  /nr/scrapli/genie/host:
+    get:
+      operationId: net.scrapli_genie_host
       tags:
         - nornir
         - scrapli
@@ -634,6 +724,75 @@ paths:
       responses:
         200:
           description: Successfully parsed command using Genie on selected Nornir host
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command_output:
+                      type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
+
+  /nr/scrapli/textfsm/host:
+    get:
+      operationId: net.scrapli_textfsm_host
+      tags:
+        - nornir
+        - scrapli
+        - textfsm
+      summary: Get TextFSM output of a command from from an individual Nornir host using Scrapli
+      description: Run an arbitrary command with `send_command`and parse output using TextFSM and Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully parsed command using TextFSM on selected Nornir host
+          schema:
+            type: array
+            items:
+              properties:
+                host:
+                  type: object
+                  properties:
+                    command_output:
+                      type: object
+        500:
+          description: Internal server error. Incorrect command or backend authentication has failed.
+
+  /nr/scrapli/host:
+    get:
+      operationId: net.scrapli_host
+      tags:
+        - nornir
+        - scrapli
+      summary: Get output of a command from from an individual Nornir host using Scrapli
+      description: Run an arbitrary command with `send_command`using Nornir
+      parameters:
+        - name: host
+          in: query
+          type: string
+          description: Name of the host
+          required: true
+        - name: command
+          in: query
+          type: string
+          description: The command to be parsed
+          required: true
+      responses:
+        200:
+          description: Successfully sent command using Scrapli on selected Nornir host
           schema:
             type: array
             items:
