@@ -629,7 +629,7 @@ def scrapli_textfsm_host(host, command):
 def scrapli_host(host, command):
     """
     Retrieves the results of an individual command for an individual host
-    of the Nornir inventory using Scrapli `send_command` and prepares 
+    of the Nornir inventory using Scrapli `send_command` and prepares
     it for consumption by the front end.
 
     :param host: The host which is to be queried.
