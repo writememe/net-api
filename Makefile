@@ -33,11 +33,17 @@ bandit:	## Perform python code security checks using bandit
 	@echo "--- Performing bandit code security scanning ---"
 	bandit -v --exclude ./venv --recursive --format json . --verbose
 
+.PHONY: venv
 venv: ## Install virtualenv, create virtualenv, install requirements for Python 3
 	@echo "--- Creating virtual environment and installing requirements (Python3.x) ---"
 	virtualenv --python=`which python3` venv
 	source ./venv/bin/activate
 	pip install -r ./requirements.txt
+
+.PHONY:	pytest
+pytest: ## Perform testing using pytest
+	@echo "--- Performing pytest ---"
+	pytest . -sv
 
 build: ## Build docker container
 	docker build -t $(DOCKER_IMAGE):$(DOCKER_TAG) .
