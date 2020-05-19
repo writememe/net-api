@@ -31,7 +31,7 @@ yamllint:	## Perform YAML linting using yamllint
 .PHONY: bandit
 bandit:	## Perform python code security checks using bandit
 	@echo "--- Performing bandit code security scanning ---"
-	bandit -v --exclude ./venv --recursive --format json . --verbose
+	bandit -v --exclude ./venv --recursive --format json . --verbose -s B101
 
 .PHONY: venv
 venv: ## Install virtualenv, create virtualenv, install requirements for Python 3
