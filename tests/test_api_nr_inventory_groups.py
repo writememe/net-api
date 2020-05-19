@@ -37,7 +37,10 @@ def api_nr_inventory_groups_specific():
     # Assert that scrapli specific platform is correctly configured for each group
     assert req_body["ios"]["connection_options"]["scrapli"]["platform"] == "cisco_iosxe"
     assert req_body["eos"]["connection_options"]["scrapli"]["platform"] == "arista_eos"
-    assert req_body["junos"]["connection_options"]["scrapli"]["platform"] == "juniper_junos"
+    assert (
+        req_body["junos"]["connection_options"]["scrapli"]["platform"]
+        == "juniper_junos"
+    )
     assert req_body["nxos"]["connection_options"]["scrapli"]["platform"] == "cisco_nxos"
     # print full request and response
     pp.pprint(req)

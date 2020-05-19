@@ -42,3 +42,5 @@ jobs:
               run: make yamllint
             - name: Execute bandit check
               run: make bandit
+            - name: Execute pytest
+              run: pytest . -sv
