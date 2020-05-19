@@ -9,3 +9,5 @@ pylama
 ntc_templates[dev]
 nornir-scrapli
 bandit
+pytest
+pytest-cov
