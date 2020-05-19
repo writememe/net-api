@@ -43,7 +43,7 @@ venv: ## Install virtualenv, create virtualenv, install requirements for Python 
 .PHONY:	pytest
 pytest: ## Perform testing using pytest
 	@echo "--- Performing pytest ---"
-	pytest . -sv
+	py.test . --cov-report term-missing -vs --pylama . --cache-clear -vvvvv
 
 build: ## Build docker container
 	docker build -t $(DOCKER_IMAGE):$(DOCKER_TAG) .
