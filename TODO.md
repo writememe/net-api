@@ -27,8 +27,8 @@
 
 ## .github/workflows/main.yaml
 - [x] Fix the trigger on the job to exclude the README.md
-- [ ] Add docker run and build support
+- [x] Add docker run and build support
  
 ## scrapli
-- [ ] Document up usage
+- [x] Document up usage
 
