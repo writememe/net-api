@@ -38,19 +38,19 @@ def nr_inventory_groups_api_custom(url):
     # Assert that scrapli specific authentication strict key is correctly configured for each group
     assert (
         req_body["ios"]["connection_options"]["scrapli"]["extras"]["auth_strict_key"]
-        == False
+        is False
     )
     assert (
         req_body["eos"]["connection_options"]["scrapli"]["extras"]["auth_strict_key"]
-        == False
+        is False
     )
     assert (
         req_body["junos"]["connection_options"]["scrapli"]["extras"]["auth_strict_key"]
-        == False
+        is False
     )
     assert (
         req_body["nxos"]["connection_options"]["scrapli"]["extras"]["auth_strict_key"]
-        == False
+        is False
     )
     # print full request and response
     # pp.pprint(req)
