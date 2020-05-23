@@ -42,5 +42,5 @@ jobs:
               run: make yamllint
             - name: Execute bandit check
               run: make bandit
-            - name: Execute pytest
-              run: make pytest
+            - name: Execute pytest (Github actions version)
+              run: make pytest-gh-actions
