@@ -42,5 +42,7 @@ jobs:
               run: make yamllint
             - name: Execute bandit check
               run: make bandit
+            - name: Execute flask application
+              run: cd app/ && python webapp.py
             - name: Execute pytest
               run: make pytest
