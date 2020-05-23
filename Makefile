@@ -45,6 +45,11 @@ pytest: ## Perform testing using pytest
 	@echo "--- Performing pytest ---"
 	py.test . --cov-report term-missing -vs --pylama . --cache-clear -vvvvv
 
+.PHONY:	pytest-gh-actions
+pytest-gh-actions: ## Perform testing using pytest on Github Actions
+	@echo "--- Performing pytest on Github Action ---"
+	py.test . --ignore=tests/ --cov-report term-missing -vs --pylama . --cache-clear -vvvvv
+
 build: ## Build docker container
 	docker build -t $(DOCKER_IMAGE):$(DOCKER_TAG) .
 
