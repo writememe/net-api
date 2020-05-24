@@ -68,3 +68,8 @@
 /nr/scrapli/textfsm/host
 /nr/scrapli/host
 ```
+- [ ] pytest mark all functions
+```
+@pytest.mark.slow
+def the_function():
+```
