@@ -23,6 +23,10 @@ highlight what is possible with multiple open source projects.
 - [Design Decisions](#design-decisions)
   - [Frontend Authentication](#frontend-authentication)
   - [Credential Management](#credential-management)
+- [TODO/Roadmap](#todo/roadmap)
+  - [TODO](#todo)
+  - [Roadmap](#roadmap)
+  
 ## net-api Overview
 
 The overview of net-api is shown in the diagram below:
@@ -242,3 +246,22 @@ def get_nr():
     nr.inventory.defaults.password = env_pword
     return nr
 ```
+
+## TODO/Roadmap
+
+This section will describe some of the items which I would like to complete and some other items
+which are most aspirational and subject to interest from others and time I can commit to this project:
+
+### TODO
+
+- [ ] Add pytest tests to test backend functions.
+- [ ] Add pytest tests to test API functions in online mode.
+- [ ] Add pytest tests to test API functions in offline mode.
+- [ ] Mark pytest tests so tests can be layered for certain use cases.
+- [ ] Provide example custom pytest tests so others can utilise them.
+- [ ] Add the NAPALM getters `lldp_neighbors`, `lldp_neighbors_detail`, `bgp_neighbors`,`bgp_neighbors_detail` and `environment`.
+
+### Roadmap
+
+- [ ] Add all other viable NAPALM getters to `net-api` as per the [NAPALM getters support matrix](https://napalm.readthedocs.io/en/latest/support/index.html#getters-support-matrix)
+- [ ] Ensure Github Actions automates and execute backend function tests with pytest.
