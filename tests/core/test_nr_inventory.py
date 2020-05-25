@@ -46,9 +46,3 @@ def nr_inventory_hosts_api(url):
     # Validate response headers and body contents, e.g. status code.
     assert req.status_code == 200
 
-
-# Execute code
-# nr_inventory_all_api(url)
-# nr_inventory_groups_api(url)
-# nr_inventory_hosts_api(url)
-

@@ -19,6 +19,7 @@ def nr_napalm_facts_all_api(url):
     # Validate response headers and body contents, e.g. status code.
     assert req.status_code == 200
 
+
 # Add pytest mark
 @pytest.mark.frontend_online
 def nr_napalm_interfaces_all_api(url):
@@ -28,6 +29,7 @@ def nr_napalm_interfaces_all_api(url):
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
     assert req.status_code == 200
+
 
 # Add pytest mark
 @pytest.mark.frontend_online
@@ -40,6 +42,7 @@ def nr_napalm_interfaces_ip_all_api(url):
     # TODO: Switching error code to 500 due to nxos get_interfaces_ip bug
     assert req.status_code == 500
 
+
 # Add pytest mark
 @pytest.mark.frontend_online
 def nr_napalm_ntp_servers_all_api(url):
@@ -49,6 +52,7 @@ def nr_napalm_ntp_servers_all_api(url):
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
     assert req.status_code == 200
+
 
 # Add pytest mark
 @pytest.mark.frontend_online

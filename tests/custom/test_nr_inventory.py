@@ -74,4 +74,3 @@ def nr_inventory_hosts_api_custom(url):
     assert req_body["lab-junos-01.lab.dfjt.local"]["hostname"] == "10.0.0.15"
     assert req_body["lab-nxos-01.lab.dfjt.local"]["groups"] == ["nxos"]
     assert req_body["lab-nxos-01.lab.dfjt.local"]["hostname"] == "10.0.0.14"
-
