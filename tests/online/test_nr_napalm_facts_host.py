@@ -22,8 +22,8 @@ def nr_napalm_facts_host_api(url, param_dict):
     assert req.status_code == 200
     req_body = req.json()
     # print full request and response
-    pp.pprint(req)
-    pp.pprint(req_body)
+    # pp.pprint(req)
+    # pp.pprint(req_body)
 
 
 # Execute code
