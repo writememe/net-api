@@ -9,6 +9,7 @@ pp = pprint.PrettyPrinter(indent=2)
 # Define base url
 url = "http://localhost:5000/"
 
+
 # Add pytest mark
 @pytest.mark.frontend_core
 def nr_inventory_all_api(url):
@@ -45,4 +46,3 @@ def nr_inventory_hosts_api(url):
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
     assert req.status_code == 200
-

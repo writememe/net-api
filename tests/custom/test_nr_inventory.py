@@ -9,6 +9,7 @@ pp = pprint.PrettyPrinter(indent=2)
 # Define base url
 url = "http://localhost:5000/"
 
+
 # Add pytest mark
 @pytest.mark.frontend_custom
 def nr_inventory_groups_api_custom(url):

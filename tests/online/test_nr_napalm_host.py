@@ -12,6 +12,7 @@ url = "http://localhost:5000/"
 # Provide the dictionary of parameters for the request
 param_dict = {"host": "lab-csr-01.lab.dfjt.local"}
 
+
 # Add pytest mark
 @pytest.mark.frontend_online
 def nr_napalm_facts_host_api(url, param_dict):
