@@ -23,7 +23,7 @@ highlight what is possible with multiple open source projects.
 - [Design Decisions](#design-decisions)
   - [Frontend Authentication](#frontend-authentication)
   - [Credential Management](#credential-management)
-- [TODO/Roadmap](#todo/roadmap)
+- [TODO/Roadmap](#todoroadmap)
   - [TODO](#todo)
   - [Roadmap](#roadmap)
   
