@@ -9,7 +9,7 @@ REST interface for various network devices."
 
 # Install pip3 and and python3
 RUN apt-get update -y && \
-    apt-get install -y python3-pip python3-dev
+    apt-get install -y python3-pip python3-dev openssh-server
 
 # Copy the requirements to the work directory
 COPY ./requirements.txt /app/requirements.txt

@@ -166,7 +166,7 @@ NORNIR_DEFAULT_USERNAME=<someadmin>
 NORNIR_DEFAULT_PASSWORD=<somepassword>
 # Change the `python3.6` to the version you are using in your environment.
 # Generally, you shouldn't need to adjust this for the accompanying Dockerfile
-NET_TEXTFSM=$VIRTUAL_ENV/lib/python3.6/dist-packages/ntc_templates/templates
+NET_TEXTFSM=/usr/local/lib/python3.6/dist-packages/ntc_templates/templates
 ```
 
 4) Run the docker build, passing in the environment variables in Step 3. This will expose the build on port 5000:
