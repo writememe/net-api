@@ -10,7 +10,7 @@ consumes:
 produces:
   - application/json
 
-basePath: /api
+basePath: /api/v1
 
 # Below are the paths supported by the webapp application
 paths:
