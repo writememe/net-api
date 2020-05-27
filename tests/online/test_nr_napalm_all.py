@@ -14,7 +14,7 @@ url = "http://localhost:5000/"
 @pytest.mark.frontend_online
 def nr_napalm_facts_all_api(url):
     # Define the API path to be tested
-    api_path = "api/nr/napalm/facts/all"
+    api_path = "api/v1/nr/napalm/facts/all"
     # Convert dict to json by json.dumps() for body data.
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
@@ -25,7 +25,7 @@ def nr_napalm_facts_all_api(url):
 @pytest.mark.frontend_online
 def nr_napalm_interfaces_all_api(url):
     # Define the API path to be tested
-    api_path = "api/nr/napalm/interfaces/all"
+    api_path = "api/v1/nr/napalm/interfaces/all"
     # Convert dict to json by json.dumps() for body data.
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
@@ -36,7 +36,7 @@ def nr_napalm_interfaces_all_api(url):
 @pytest.mark.frontend_online
 def nr_napalm_interfaces_ip_all_api(url):
     # Define the API path to be tested
-    api_path = "api/nr/napalm/interfaces_ip/all"
+    api_path = "api/v1/nr/napalm/interfaces_ip/all"
     # Convert dict to json by json.dumps() for body data.
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
@@ -48,7 +48,7 @@ def nr_napalm_interfaces_ip_all_api(url):
 @pytest.mark.frontend_online
 def nr_napalm_ntp_servers_all_api(url):
     # Define the API path to be tested
-    api_path = "api/nr/napalm/ntp_servers/all"
+    api_path = "api/v1/nr/napalm/ntp_servers/all"
     # Convert dict to json by json.dumps() for body data.
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
@@ -59,7 +59,7 @@ def nr_napalm_ntp_servers_all_api(url):
 @pytest.mark.frontend_online
 def nr_napalm_users_all_api(url):
     # Define the API path to be tested
-    api_path = "api/nr/napalm/users/all"
+    api_path = "api/v1/nr/napalm/users/all"
     # Convert dict to json by json.dumps() for body data.
     req = requests.get(url + api_path)
     # Validate response headers and body contents, e.g. status code.
