@@ -187,9 +187,9 @@ $
 
 ## Example Use Cases
 
-To give you an idea of some of the example use cases for net-api, there is a repository [net-api-tools](https://github.com/writememe/net-api-tools) containing code examples of some use-cases for consuming the net-api.
+To give you an idea of some of the example use cases for net-api, there is an accompanying repository called [net-api-tools](https://github.com/writememe/net-api-tools) containing code examples of some use-cases for consuming `net-api`.
 
-These are intended to spark your imagination and show some really simple solutions, all based on the net-api.
+These are intended to spark your imagination and show some really simple solutions, all based on `net-api`.
 
 ## Design Decisions
 
