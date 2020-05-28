@@ -15,7 +15,6 @@ highlight what is possible with multiple open source projects.
 - [Overview](##net-api-overview)
   - [What's under the hood?](#whats-under-the-hood)
   - [Supported Environments](#supported-environments)
-  - [More Examples](#more-examples)
 - [Installation/Operating Instructions](#installationoperating-instructions)
   - [Python 3.x](#python-3x)
   - [Docker](#docker)
@@ -198,13 +197,15 @@ When developing this application, there a few primary drivers for the design:
 
 **1) Portable**  
 
-All projects that I develop for public consumption must be portable. This means that where possible, my project will be as portable as possible to other environments. This means any usage of "business logic" or "tribal knowledge" is not baked in.
+All projects that I develop for public consumption must be portable. This means that where possible, my project will be as portable as possible to other environments. This means any usage of "business logic" or "tribal knowledge" is not baked in.  
+
+This is also the intention of [net-api-tools](https://github.com/writememe/net-api-tools), where "business" examples are provided to give you an example of how to use this platform within the context of your business.
 
 **2) Extensible**  
 
 This project is meant to be as extensible as you require. The project has a standard structure which can be followed to develop more API calls, or taken into a different direction.  
 
-Most of you will wince at the lack of security on the front end at the usage of environmental variables to set credentials. This is intentional as most people have their own credential system and authentication mechanisms within their environment. This project would be limited in extensibility if I catered to certain systems to handle those problems.
+Most of you will be concerned at the lack of security on the front end at the usage of environmental variables to set credentials. This is intentional as most people have their own credential system and authentication mechanisms within their environment. This project would be limited in extensibility if I catered to certain systems to handle those problems.
 
 **3) Useful**  
 
@@ -250,7 +251,7 @@ def get_nr():
 ## TODO/Roadmap
 
 This section will describe some of the items which I would like to complete and some other items
-which are most aspirational and subject to interest from others and time I can commit to this project:
+which are more aspirational and subject to interest from others and time I can commit to this project:
 
 ### TODO
 
