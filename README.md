@@ -84,26 +84,31 @@ cd net-api
 Refer to the [Nornir Inventory Documentation](https://nornir.readthedocs.io/en/latest/tutorials/intro/inventory.html) if you have not used Nornir before
 or follow the examples provided in this repository.
 
-3) Create the virtual environment to run the application in and install the requirements. For your convenience, this can be completed by performing the following:
+3) Create the virtual environment to run the application in:
 
 ```console
-make venv
+virtualenv --python=`which python3` venv
+source venv/bin/activate
+```
+4) Install the requirements for `net-api`
+```
+pip install -r requirements.txt
 ```
 
-4) Set two environmental variables, which are used by the application as the default credentials to login to devices:
+5) Set two environmental variables, which are used by the application as the default credentials to login to devices:
 
 ```bash
 export NORNIR_DEFAULT_USERNAME=<someusername>
 export NORNIR_DEFAULT_PASSWORD=<somepassword>
 ```
-5) Validate these environmental variables by entering the following command:
+6) Validate these environmental variables by entering the following command:
 
 ```
 env | grep NORNIR
 ```
 You should see the two environment variables set.
 
-6) Setup an environmental variable to point to the NTC templates directory for TextFSM functionality.
+7) Setup an environmental variable to point to the NTC templates directory for TextFSM functionality.
 
 In the example below, the virtual environment is using `python3.6`. You will need to adjust this if using anything else:
 
@@ -111,21 +116,21 @@ In the example below, the virtual environment is using `python3.6`. You will nee
 export NET_TEXTFSM=$VIRTUAL_ENV/lib/python3.6/site-packages/ntc_templates/templates
 ```
 
-7) Validate these environmental variables by entering the following command:
+8) Validate these environmental variables by entering the following command:
 
 ```
 env | grep NET_TEXTFSM
 ```
 You should see the environment variable set.
 
-8) Change to the `app/` directory, then start the flask application:
+9) Change to the `app/` directory, then start the flask application:
 
 ```python3
 cd app
 python webapp.py
 ```
 
-9) The application will now be running on TCP/5000. For example, if the server IP on which the app is running is 10.0.0.1, the application will be available on http://10.0.0.1:5000
+10) The application will now be running on TCP/5000. For example, if the server IP on which the app is running is 10.0.0.1, the application will be available on http://10.0.0.1:5000
 
 ### Docker
 
