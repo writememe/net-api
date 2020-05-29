@@ -152,13 +152,13 @@ Refer to the [Nornir Inventory Documentation](https://nornir.readthedocs.io/en/l
 or follow the examples provided in this repository.
 
     
-2) Build the Docker image, whereby `net-api` is the name of the image and `latest` is an arbitary docker tag:
+3) Build the Docker image, whereby `net-api` is the name of the image and `latest` is an arbitary docker tag:
 
 ```console
 make build
 ```
 
-3) Create a file of environmental variables, to be passed into the Docker image as it's starting up.  
+4) Create a file of environmental variables, to be passed into the Docker image as it's starting up.  
    In the below example, the file `.env-vars` contains three environmental variables:
     - `NORNIR_DEFAULT_USERNAME` - Used by the application as the default username to login to devices in the Nornir inventory.
     - `NORNIR_DEFAULT_PASSWORD` - Used by the application as the default password to login to devices in the Nornir inventory.
@@ -173,13 +173,13 @@ NORNIR_DEFAULT_PASSWORD=<somepassword>
 NET_TEXTFSM=/usr/local/lib/python3.6/dist-packages/ntc_templates/templates
 ```
 
-4) Run the docker build, passing in the environment variables in Step 3. This will expose the build on port 5000:
+5) Run the docker build, passing in the environment variables in Step 3. This will expose the build on port 5000:
 
 ```console
 make run
 ```
 
-5) Verify that the container is up and operational, by running `docker ps`:
+6) Verify that the container is up and operational, by running `docker ps`:
 
 ```dockerfile
 $ docker ps
@@ -188,7 +188,7 @@ fe8c0b858f18        net-api:latest      "python3 webapp.py"   21 minutes ago    
 $
 ```
 
-6) The application will now be running on TCP/5000. For example, if the client IP is 10.0.0.1, the application will be available on http://10.0.0.1:5000
+7) The application will now be running on TCP/5000. For example, if the client IP is 10.0.0.1, the application will be available on http://10.0.0.1:5000
 
 ## Example Use Cases
 
