@@ -154,8 +154,8 @@ or follow the examples provided in this repository.
     
 2) Build the Docker image, whereby `net-api` is the name of the image and `latest` is an arbitary docker tag:
 
-```dockerfile
-docker build -t net-api:latest .
+```console
+make build
 ```
 
 3) Create a file of environmental variables, to be passed into the Docker image as it's starting up.  
@@ -175,8 +175,8 @@ NET_TEXTFSM=/usr/local/lib/python3.6/dist-packages/ntc_templates/templates
 
 4) Run the docker build, passing in the environment variables in Step 3. This will expose the build on port 5000:
 
-```dockerfile
-docker run -d --env-file=.env-vars -p 5000:5000 net-api:latest
+```console
+make run
 ```
 
 5) Verify that the container is up and operational, by running `docker ps`:
