@@ -15,7 +15,7 @@ on:
         paths-ignore:
             - 'README.md'
             - 'TODO.md'
-            
+
 jobs:
     build:
         name: Docker Build and Run
