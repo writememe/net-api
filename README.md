@@ -67,7 +67,7 @@ Below are some videos which have been recorded for `net-api`
 
 In the video below, a brief introduction is given to `net-api` and a demonstration on it's capability with Scrapli, Netmiko, Genie and TextFSM.
 
-[Introduction to net-api](https://youtu.be/yHsGDQDOLH8)
+[Introduction to net-api](https://youtu.be/M1pIGb7yd9I)
 
 ## Installation Videos
 
