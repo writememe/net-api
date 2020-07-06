@@ -15,6 +15,7 @@ highlight what is possible with multiple open source projects.
 - [Overview](##net-api-overview)
   - [What's under the hood?](#whats-under-the-hood)
   - [Supported Environments](#supported-environments)
+  - [Videos](#videos)
 - [Installation/Operating Instructions](#installationoperating-instructions)
   - [Python 3.x](#python-3x)
   - [Docker](#docker)
@@ -57,6 +58,24 @@ This application is made up of the following:
 This application is only supported on:
  - Python 3.6 or greater
  - Linux/unix machines only
+
+## Videos
+
+Below are some videos which have been recorded for `net-api`
+
+### net-api Introduction Video
+
+In the video below, a brief introduction is given to `net-api` and a demonstration on it's capability with Scrapli, Netmiko, Genie and TextFSM.
+
+[Introduction to net-api](https://youtu.be/yHsGDQDOLH8)
+
+## Installation Videos
+
+Below are videos for installing `net-api` on Python3 and Docker:
+
+[Installing net-api - Python3](https://youtu.be/yHsGDQDOLH8)  
+
+[Installing net-api - Docker](https://youtu.be/Ax78Mn4WxwA)
 
 ## Installation/Operating Instructions
 
