@@ -11,7 +11,8 @@ import os
 from os import environ
 from flask import jsonify
 from nornir import InitNornir
-from nornir.plugins.tasks.networking import napalm_get, netmiko_send_command, napalm_cli
+from nornir_netmiko.tasks import netmiko_send_command
+from nornir_napalm.plugins.tasks import napalm_cli, napalm_get
 from nornir_scrapli.tasks import send_command
 from colorama import Fore, init
 
@@ -126,7 +127,7 @@ def get_inv_all():
     nr.inventory.defaults.username = "**REDACTED**"
     nr.inventory.defaults.password = "**REDACTED**"
     # This calls all results of the get inventory dictionary call.
-    r = nr.inventory.get_inventory_dict()
+    r = nr.inventory.dict()
     return jsonify(r)
 
 
@@ -140,7 +141,7 @@ def get_inv_hosts():
     nr = get_nr()
     # This calls all results of the get inventory dictionary call.
     # This is not ideal
-    r_all = nr.inventory.get_inventory_dict()
+    r_all = nr.inventory.dict()
     # Access the host directory results
     r = r_all["hosts"]
     return jsonify(r)
@@ -156,7 +157,7 @@ def get_inv_groups():
     nr = get_nr()
     # This calls all results of the get inventory dictionary call.
     # This is not ideal
-    r_all = nr.inventory.get_inventory_dict()
+    r_all = nr.inventory.dict()
     # Access the groups directory results
     r = r_all["groups"]
     return jsonify(r)
@@ -553,7 +554,9 @@ def netmiko_host(host, command):
     device = nr.filter(name=str(host))
     # Execute netmiko send command, using Genie
     r = device.run(
-        task=netmiko_send_command, name="Netmiko Command", command_string=command,
+        task=netmiko_send_command,
+        name="Netmiko Command",
+        command_string=command,
     )
     # If/Else block to validate whether the task failed or not
     # If the task fails

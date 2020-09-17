@@ -7,8 +7,7 @@ ntc_templates[dev]
 nornir
 nornir_napalm
 nornir_netmiko
-nornir-scrapli
-nornir_utils
+nornir_scrapli
 pyats
 pylama
 pytest
