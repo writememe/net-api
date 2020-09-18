@@ -12,4 +12,5 @@ pyats
 pylama
 pytest
 pytest-cov
+scrapli[genie]
 swagger-ui-bundle
