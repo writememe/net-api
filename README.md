@@ -279,7 +279,7 @@ which are more aspirational and subject to interest from others and time I can c
 
 ### TODO
 
-- [ ] Add pytest tests to test backend functions.
+- [x] Add pytest tests to test backend functions.
 - [ ] Add pytest tests to test API functions in online mode.
 - [ ] Add pytest tests to test API functions in offline mode.
 - [ ] Mark pytest tests so tests can be layered for certain use cases.
